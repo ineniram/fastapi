@@ -22,6 +22,15 @@ class PostBase(BaseModel):
     content: str
     published: bool = True
 
+class Post(PostBase):
+    id: int
+    created_at: datetime
+    owner_id: int
+    owner: UserOut
+    class Config:
+        orm_mode = True
+
+
 class PostCreate(PostBase):
     pass
 
@@ -30,14 +39,6 @@ class PostOut(BaseModel):
     votes: int
     class Config:
             orm_mode = True
-
-class Post(PostBase):
-    id: int
-    created_at: datetime
-    owner_id: int
-    owner: UserOut
-    class Config:
-        orm_mode = True
 
 class Token(BaseModel):
     access_token: str
